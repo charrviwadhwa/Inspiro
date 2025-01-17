@@ -94,35 +94,67 @@ const motivationalQuotes = [
   "The only limit to our realization of tomorrow is our doubts of today."
 ];
 
-function showNextQuote() {
-  // Retrieve the current quote index from storage
-  chrome.storage.local.get(['currentQuoteIndex'], function(data) {
-      let currentIndex = data.currentQuoteIndex || 0; // Default to 0 if not set
 
-      // Show the next quote in the sequence
-      let quote = motivationalQuotes[currentIndex];
+const images = [
+  "images/001-light-bulb.png",
+  "images/002-be-inspired.png ",
+  "images/003-raise-hand.png ",
+  "images/004-motivation.png ",
+  "images/005-inspiration.png ",
+  "images/007-solution.png ",
+  "images/006-inspiration-1.png ",
+  "images/008-inspiration-2.png ",
+  "images/009-inspiration-3.png" ,
+  "images/010-stars.png ",
+  "images/creativity (2).png ",
+  "images/dream.png" ,
+  "images/girl-power.png ",
+ " images/imagination.png ",
+  "images/keep-going.png ",
+ " images/motivation.png ",
+  "images/team-spirit.png"
+];
 
-      // Create the notification
-      chrome.notifications.create({
-          type: 'basic',
-          iconUrl: 'icon48.png',  // Ensure this icon exists
-          title: 'Motivation for You !',
-          message: quote,
-          priority: 1
-      });
 
-      // Update the index to point to the next quote, wrapping around if necessary
-      currentIndex = (currentIndex + 1) % motivationalQuotes.length;
+function showNextQuoteAndImage() {
+  
+  chrome.storage.local.get(['currentQuoteIndex', 'currentImageIndex'], function(data) {
+    let currentQuoteIndex = data.currentQuoteIndex || 0;  // Default to 0 if not set
+    let currentImageIndex = data.currentImageIndex || 0;  // Default to 0 if not set
 
-      // Save the updated index back to storage
-      chrome.storage.local.set({ currentQuoteIndex: currentIndex });
+   
+    let quote = motivationalQuotes[currentQuoteIndex];
+    let imageUrl = images[currentImageIndex];
+
+    
+    chrome.notifications.create({
+      type: 'basic',
+      iconUrl: imageUrl,  // Use the current image as the icon
+      title: 'Motivation for You!',
+      message: quote,
+      priority: 1
+    });
+
+   
+    currentQuoteIndex = (currentQuoteIndex + 1) % motivationalQuotes.length;
+
+    
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+
+   
+    chrome.storage.local.set({ 
+      currentQuoteIndex: currentQuoteIndex,
+      currentImageIndex: currentImageIndex
+    });
   });
 }
 
+// Show quote and image when Chrome starts
 chrome.runtime.onStartup.addListener(() => {
-  showNextQuote();  // Show next quote when Chrome starts
+  showNextQuoteAndImage();
 });
 
+// Show quote and image when the extension is installed or updated
 chrome.runtime.onInstalled.addListener(() => {
-  showNextQuote();  // Show next quote when extension is installed or updated
+  showNextQuoteAndImage();
 });
