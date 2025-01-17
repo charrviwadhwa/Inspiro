@@ -3,12 +3,12 @@
 **Inspiro** is a Chrome extension that brings a daily boost of motivation right to your browser every time you open a new tab. With Inspiro, your new tab page will no longer be boring or empty—it’ll be filled with inspiring quotes and beautiful images to keep you focused and motivated. 🚀💪
 
 ### 🔥 What Inspiro Does:
-- **Motivational Quotes**: Every time you open a new tab, Inspiro brings a fresh, uplifting quote to boost your day.
+- **Motivational Quotes**: Every time you open browser, Inspiro brings a fresh, uplifting quote to boost your day.
 - **Fun Stickers**: Added fun stickers to make your browser feel even more personal and exciting. 🎉
 - **Non-stop Inspiration**: You'll never open a new tab without feeling motivated and focused.
 
 ### 💻 How it works:
-- Once installed, Inspiro will show a motivational quote and a random image whenever you open a new tab or window in Chrome.
+- Once installed, Inspiro will show a motivational quote and a random image whenever you open a new window in Chrome.
 - The quotes and images will rotate independently, ensuring you always get something new each time you start the browser.
 
 ### 🚀 How to Get Started:
