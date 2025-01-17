@@ -119,8 +119,8 @@ const images = [
 function showNextQuoteAndImage() {
   
   chrome.storage.local.get(['currentQuoteIndex', 'currentImageIndex'], function(data) {
-    let currentQuoteIndex = data.currentQuoteIndex || 0;  // Default to 0 if not set
-    let currentImageIndex = data.currentImageIndex || 0;  // Default to 0 if not set
+    let currentQuoteIndex = data.currentQuoteIndex || 0; 
+    let currentImageIndex = data.currentImageIndex || 0; 
 
    
     let quote = motivationalQuotes[currentQuoteIndex];
@@ -129,7 +129,7 @@ function showNextQuoteAndImage() {
     
     chrome.notifications.create({
       type: 'basic',
-      iconUrl: imageUrl,  // Use the current image as the icon
+      iconUrl: imageUrl,  
       title: 'Motivation for You!',
       message: quote,
       priority: 1
@@ -149,12 +149,12 @@ function showNextQuoteAndImage() {
   });
 }
 
-// Show quote and image when Chrome starts
+
 chrome.runtime.onStartup.addListener(() => {
   showNextQuoteAndImage();
 });
 
-// Show quote and image when the extension is installed or updated
+
 chrome.runtime.onInstalled.addListener(() => {
   showNextQuoteAndImage();
 });
